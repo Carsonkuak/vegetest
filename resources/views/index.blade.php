@@ -5,15 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for button group */
+        .button-group {
+            display: flex;
+            gap: 10px; /* Space between buttons */
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Product List</h1>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Product List</h1>
+            <div class="button-group">
+                <button class="btn btn-success" onclick="window.location.href='{{ route('cart.view', ['user_id' => Auth::id()]) }}'">
+                    View Cart
+                </button>
+                <button class="btn btn-info" onclick="window.location.href='{{ route('checkoutlist', ['user_id' => Auth::id()]) }}'">
+                    View Checkout List
+                </button>
+            </div>
+        </div>
 
-        <!-- Link to add a new product -->
-        <a href="{{ route('create') }}" class="btn btn-primary mb-3">Add New Product</a>
-
-        <!-- Success message alert -->
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
@@ -24,16 +37,14 @@
                     <th>Name</th>
                     <th>Mass (kg)</th>
                     <th>Price</th>
-                    <th>Quantity</th>
                 </tr>
             </thead>
             <tbody id="product-table-body">
-                <!-- Products will be loaded here via JavaScript -->
+
             </tbody>
         </table>
     </div>
 
-    <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -52,7 +63,6 @@
                                 <td>${product.name}</td>
                                 <td>${product.mass}</td>
                                 <td>$${parseFloat(product.price).toFixed(2)}</td>
-                                <td>${product.quantity}</td>
                             </tr>
                         `;
                     });

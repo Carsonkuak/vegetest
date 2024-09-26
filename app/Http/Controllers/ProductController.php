@@ -36,14 +36,14 @@ class ProductController extends Controller
     //     return view('products.index', compact('products'));
     // }
     public function getProductsList() {
-        $products = Product::all(); // Fetch all products from the database
-        return response()->json($products); // Return the products in JSON format
+        $products = Product::all();
+        return response()->json($products); 
     }
 
     public function show($id) {
-        $product = Product::findOrFail($id); // Fetch the product based on its ID
+        $product = Product::findOrFail($id);
 
-        return view('show', compact('product')); // Return the show page with product details
+        return view('show', compact('product'));
     }
 
 
