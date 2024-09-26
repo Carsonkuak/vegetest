@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register Form</title>
 </head>
+<style>
+    body{
+        text-align: center;
+        align-items: center;
+    }
+</style>
 <body>
 <form action="{{ Route('register') }}" method="POST">
         @csrf
